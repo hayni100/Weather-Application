@@ -1,0 +1,57 @@
+header {
+    font-size: 30px;
+    text-align: center;
+    background-color: rgb(186, 146, 224);
+}
+
+section {
+    padding: 15px;
+}
+.show-weather {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: content-box;
+    width: 70%;
+}
+
+.search-seaction {
+    display: flex;
+    flex-direction: column;
+}
+.forecast-section {
+    border-style: solid;
+    border-color:black;
+    
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.forcast-box {
+    display: flex;
+    flex-direction: row;
+    padding:15px;
+    justify-content: space-evenly;
+   
+}
+
+.weather-box {
+    display: flex;
+    flex-direction: column;
+    background-color: blueviolet;
+}
+h2 {
+    font-size: 35px;
+}
+
+form {
+    font-size: 30px;
+}
+
+button {
+    font-size: 20px;
+}
