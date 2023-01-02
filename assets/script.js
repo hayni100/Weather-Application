@@ -9,41 +9,34 @@ var currentWind = document.querySelector("#current-wind");
 var currentHumidity = document.querySelector("#current-humidity");
 var searchForm = document.querySelector("#search-form");
 
-//API key//
 var apiKey = "e00c5c4de615eec46a4b90f03955e648";
 
-//function with fetch request//
+function handleSubmit(event) {
+  event.preventDefault();
 
-function getApi() {
-  var requestUrl =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+  var cityName = document.querySelector("#city-name-input").value;
+  var lonLatString =
+    "http://api.openweathermap.org/geo/1.0/direct?q=" +
     cityName +
-    "&appid=" +
+    "&limit=5&appid=" +
     apiKey;
 
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-        cityAndDate.textContent = data.weather;
-        currentTemp.textContent = data.main.temp;
-        currentWind.textContent = data.wind.speed + "MPH";
+  console.log(lonLatString);
 
-
-    });
-
-function handleSubmit(e) {
-    e.preventDefault();
-
-    var cityName = cityNameInput.value.trim();
-    getApi(cityName);
-    
+  function getLonLat() {
+    fetch(lonLatString)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      });
   }
-  handleSubmit(e);
+
+  getLonLat();
 }
-searchButton.addEventListener('click', handleSubmit());
+
+searchButton.addEventListener("click", handleSubmit);
 
 // {"coord":{"lon":-93.2638,"lat":44.98},
 // "weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":
