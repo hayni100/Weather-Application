@@ -15,37 +15,33 @@ var cityName = document.querySelector("#city-name-input").value;
 
 function handleSubmit(event) {
   event.preventDefault();
+  var getLonLat =
+    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    cityName +
+    "&limit=5&appid=" +
+    apiKey;
 
-  function getLonLat() {
-    var getLonLat =
-      "http://api.openweathermap.org/geo/1.0/direct?q=" +
-      cityName +
-      "&limit=5&appid=" +
-      apiKey;
+  fetch(getLonLat)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
 
-    fetch(getLonLat)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
+      for (var i = 0; i < data.length; i++) {
+        // console.log(data[i].name);
+        // var cityNameData = data[i].name;
+        // var lat = data[i].lat;
+        // var lon = data[i].lon;
+        const lonLatData = {
+          cityNameData: data[i].name,
+          lat: data[i].lat,
+          lon: data[i].lon,
+        };
 
-        for (var i = 0; i < data.length; i++) {
-          // console.log(data[i].name);
-          // var cityNameData = data[i].name;
-          // var lat = data[i].lat;
-          // var lon = data[i].lon;
-          const lonLatData = {
-            cityNameData: data[i].name,
-            lat: data[i].lat,
-            lon: data[i].lon,
-          };
-
-          console.log(lonLatData);
-        }
-      });
-  }
-  getLonLat();
+        console.log(lonLatData);
+      }
+    });
 }
 
 // function getWeather() {
