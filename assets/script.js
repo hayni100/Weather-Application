@@ -11,42 +11,50 @@ var searchButton = document.querySelector("#search-button");
 // var searchForm = document.querySelector("#search-form");
 var forecastSection = document.querySelector(".forecast-section");
 var apiKey = "e00c5c4de615eec46a4b90f03955e648";
+var cityName = document.querySelector("#city-name-input").value;
 
 function handleSubmit(event) {
   event.preventDefault();
 
-  var cityName = document.querySelector("#city-name-input").value;
-  var getLonLat =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
-    cityName +
-    "&limit=5&appid=" +
-    apiKey;
+  function getLonLat() {
+    var getLonLat =
+      "http://api.openweathermap.org/geo/1.0/direct?q=" +
+      cityName +
+      "&limit=5&appid=" +
+      apiKey;
 
-  fetch(getLonLat)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
+    fetch(getLonLat)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
 
-      for (var i = 0; i < data.length; i++) {
-        console.log(data[i].name);
-        var cityNameData = data[i].name
-        var lat = data[i].lat;
-        var lon = data[i].lon;
+        for (var i = 0; i < data.length; i++) {
+          // console.log(data[i].name);
+          // var cityNameData = data[i].name;
+          // var lat = data[i].lat;
+          // var lon = data[i].lon;
+          const lonLatData = {
+            cityNameData: data[i].name,
+            lat: data[i].lat,
+            lon: data[i].lon,
+          };
 
-
-      
-        console.log(lat, lon);
-
-        return lat, lon, cityNameData;
-        
-      }
-  
-    });
-
-
+          console.log(lonLatData);
+        }
+      });
   }
+  getLonLat();
+}
 
+// function getWeather() {
+//   var getWeather =
+//     "https://api.openweathermap.org/data/3.0/onecall?lat=" +
+//     lonLatData.lat +
+//     "&lon=" +
+//     lonLatData.lon +
+//     "&exclude=minuetly,hourly&appid=" +
+//     apiKey;
+// }
 searchButton.addEventListener("click", handleSubmit);
-
