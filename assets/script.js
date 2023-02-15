@@ -1,14 +1,6 @@
 //DOM Hooks//
 var cityNameInput = document.querySelector("#city-name-input");
-// var cityName = document.querySelector("#city-name");
 var searchButton = document.querySelector("#search-button");
-// var pastSearch = document.querySelector("#past-search");
-// var cityAndDate = document.querySelector("#city-date");
-// var currentWeather = document.querySelector("#currentWeather");
-// var currentTemp = document.querySelector("#current-temp");
-// var currentWind = document.querySelector("#current-wind");
-// var currentHumidity = document.querySelector("#current-humidity");
-// var searchForm = document.querySelector("#search-form");
 var forecastSection = document.querySelector(".forecast-section");
 var apiKey = "e00c5c4de615eec46a4b90f03955e648";
 
@@ -25,7 +17,6 @@ function getLonLat(cityName) {
     "&limit=5&appid=" +
     apiKey;
 
-  //api.openweathermap.org/data/3.0/onecall?lat=40.2331483&lon= -76.1371684&exclude=hourly&appid=e00c5c4de615eec46a4b90f03955e648
 
   https: fetch(getLonLat)
     .then(function (response) {
@@ -56,6 +47,8 @@ function getWeather(lat, lon, cityNameData) {
     lon +
     "&exclude=minuetly,hourly&appid=" +
     apiKey;
+  // free API subscription does not include weather call back
+  //api.openweathermap.org/data/3.0/onecall?lat=40.2331483&lon= -76.1371684&exclude=hourly&appid=e00c5c4de615eec46a4b90f03955e648
 
   fetch(getWeatherData).then(function (data) {
     console.log(data);
