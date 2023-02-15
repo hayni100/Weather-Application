@@ -25,7 +25,9 @@ function getLonLat(cityName) {
     "&limit=5&appid=" +
     apiKey;
 
-  fetch(getLonLat)
+  //api.openweathermap.org/data/3.0/onecall?lat=40.2331483&lon= -76.1371684&exclude=hourly&appid=e00c5c4de615eec46a4b90f03955e648
+
+  https: fetch(getLonLat)
     .then(function (response) {
       return response.json();
     })
@@ -38,57 +40,35 @@ function getLonLat(cityName) {
       }
       console.log(data);
       console.log(lat, lon, cityNameData);
+      getWeather(lat, lon, cityNameData);
+      renderOnHtml(lat, lon, cityNameData);
+      return lat, lon, cityNameData;
     });
- 
 }
 
-function getWeather(data) {
-  var getWeather =
+function getWeather(lat, lon, cityNameData) {
+  console.log("getweather", lat, lon, cityNameData);
+  var apiKey = "e00c5c4de615eec46a4b90f03955e648";
+  var getWeatherData =
     "https://api.openweathermap.org/data/3.0/onecall?lat=" +
-    data.lat +
+    lat +
     "&lon=" +
-    data.lon +
+    lon +
     "&exclude=minuetly,hourly&appid=" +
     apiKey;
 
-  fetch(getWeather).then(function (data) {
+  fetch(getWeatherData).then(function (data) {
     console.log(data);
   });
 }
 
-//
+function renderOnHtml(lat, lon, cityNameData) {
+  var cityNameRender = document.getElementById("city-name");
+  var latRender = document.getElementById("lat");
+  var lonRender = document.getElementById("lon");
 
-// .then(function (data) {
-//   console.log(data);
-//   getWeather(data);
-
-// for (var i = 0; i < data.length; i++) {
-//   console.log(data[i].name);
-//   var cityNameData = data[i].name;
-//   var lat = data[i].lat;
-//   var lon = data[i].lon;
-//   // const lonLatData = {
-//   //   cityNameData: data[i].name,
-//   //   lat: data[i].lat,
-//   //   lon: data[i].lon,
-//   // };
-// }
-// console.log(lon, lat, cityNameData);
-//     });
-// }
-
-function getWeather() {
-  var getWeather =
-    "https://api.openweathermap.org/data/3.0/onecall?lat=" +
-    data.lat +
-    "&lon=" +
-    data.lon +
-    "&exclude=minuetly,hourly&appid=" +
-    apiKey;
-
-  fetch(getWeather).then(function (data) {
-    console.log(data);
-  });
+  cityNameRender.textContent = cityNameData;
+  latRender.textContent = lat;
+  lonRender.textContent = lon;
 }
-
 searchButton.addEventListener("click", handleSubmit);
