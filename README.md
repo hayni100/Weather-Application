@@ -1,12 +1,14 @@
 # Weather-Application
 https://hayni100.github.io/Weather-Application/
 ## Description
-This is an application that allows users to search a city to get the current weather information and a 5 day forecast. To see current function please opne console log to see Geocode being returned by API call. 
+This is an application that allows users to search a city to get the current weather information and a 5 day forecast. To see current function please opne console log to see Geocode being returned by API call.  
 
-Steps required for completion:
+Current Function: 
+1. Getting latitude and longitutde is successful with user's city input.
+2. Latitude and longitude is inserterd into the API URL for getting the 5 day forecast. (variables are console logging in the getWeather function)
 
-1. Getting lon and lat out of function
-2. Insert lon and lat to get weather data
+Issue Preventing From Moving Forward:
+- API call is only available for those with subscription to one call. 
 
 ## Installation
 N/A
